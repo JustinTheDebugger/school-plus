@@ -16,7 +16,7 @@ module.exports = {
         themeSky: "#C3EBFA",
         themeSkyLight: "#EDF9FD",
         themePurple: "#CFCEFF",
-        themePrupleLight: "#F1F0FF",
+        themePurpleLight: "#F1F0FF",
         themeYellow: "#FAE27C",
         themeYellowLight: "#FEFCE8",
       },
