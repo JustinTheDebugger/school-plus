@@ -1,5 +1,6 @@
 import AttendanceChart from "@/components/AttendanceChart";
 import CountChart from "@/components/CountChart";
+import FinanceChart from "@/components/FinanceChart";
 import UserCard from "@/components/UserCard";
 
 const AdminPage = () => {
@@ -14,10 +15,10 @@ const AdminPage = () => {
           <UserCard type="parent" />
           <UserCard type="staff" />
         </div>
-        {/* MIDDLE CHART */}
 
+        {/* MIDDLE SECTION - CHART */}
         <div className="flex gap-4 flex-col lg:flex-row">
-          {/* COUNT CHART */}
+          {/* STUDENT COUNT CHART */}
           <div className="w-full lg:w-1/3 h-[450px]">
             <CountChart />
           </div>
@@ -27,8 +28,10 @@ const AdminPage = () => {
           </div>
         </div>
 
-        {/* BOTTOM CHARTS */}
-        <div></div>
+        {/* FINANCE CHARTS */}
+        <div>
+          <FinanceChart />
+        </div>
       </div>
 
       {/* RIGHT COLUMN */}
