@@ -1,27 +1,36 @@
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { role, subjectsData } from "@/lib/data";
+import { classesData, role, subjectsData } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-type Subject = {
+type Class = {
   id: number;
   name: string;
-  teachers: string[];
-  phone: string;
-  address: string;
+  capacity: number;
+  grade: number;
+  supervisor: string;
 };
 
 const columns = [
   {
-    header: "Subject Name",
+    header: "Class Name",
     accessor: "name",
   },
   {
-    header: "Teachers",
-    accessor: "teachers",
+    header: "Capacity",
+    accessor: "capacity",
     className: "hidden md:table-cell",
+  },
+  {
+    header: "Grade",
+    accessor: "grade",
+    className: "hidden md:table-cell",
+  },
+  {
+    header: "Supervisor",
+    accessor: "supervisor",
   },
   {
     header: "Actions",
@@ -29,14 +38,16 @@ const columns = [
   },
 ];
 
-const SubjectListPage = () => {
-  const renderRow = (item: Subject) => (
+const ClassListPage = () => {
+  const renderRow = (item: Class) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 hover:bg-themePurpleLight"
     >
       <td className="flex items-center gap-4 p-4">{item.name}</td>
-      <td className="hidden md:table-cell">{item.teachers.join(", ")}</td>
+      <td className="hidden md:table-cell">{item.capacity}</td>
+      <td className="hidden md:table-cell">{item.grade}</td>
+      <td>{item.supervisor}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
@@ -59,7 +70,7 @@ const SubjectListPage = () => {
       {/* TOP */}
       <div className="flex flex-col md:flex-row items-center justify-between">
         <h1 className="md:block text-lg font-semibold mb-3 self-start">
-          All Subjects
+          All Classes
         </h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
@@ -80,7 +91,7 @@ const SubjectListPage = () => {
       </div>
 
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={subjectsData} />
+      <Table columns={columns} renderRow={renderRow} data={classesData} />
 
       {/* PAGINATION */}
       <Pagination />
@@ -88,4 +99,4 @@ const SubjectListPage = () => {
   );
 };
 
-export default SubjectListPage;
+export default ClassListPage;
