@@ -75,19 +75,21 @@ const TeacherListPage = () => {
       <td className="hidden md:table-cell">{item.teacherId}</td>
       <td className="hidden md:table-cell">{item.subjects.join(",")}</td>
       <td className="hidden md:table-cell">{item.classes.join(",")}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
-      <td className="hidden md:table-cell">{item.address}</td>
-      <td className="flex items-center gap-2">
-        <Link href={`/list/teachers/${item.id}`}>
-          <button className="w-7 h-7 flex items-center justify-center rounded-full bg-themeSky">
-            <Image src={"/view.png"} alt="" width={16} height={16} />
-          </button>
-        </Link>
-        {role === "admin" && (
-          <button className="w-7 h-7 flex items-center justify-center rounded-full bg-themePurple">
-            <Image src={"/delete.png"} alt="" width={16} height={16} />
-          </button>
-        )}
+      <td className="hidden lg:table-cell">{item.phone}</td>
+      <td className="hidden lg:table-cell">{item.address}</td>
+      <td>
+        <div className="flex items-center gap-2">
+          <Link href={`/list/teachers/${item.id}`}>
+            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-themeSky">
+              <Image src={"/view.png"} alt="" width={16} height={16} />
+            </button>
+          </Link>
+          {role === "admin" && (
+            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-themePurple">
+              <Image src={"/delete.png"} alt="" width={16} height={16} />
+            </button>
+          )}
+        </div>
       </td>
     </tr>
   );
@@ -109,7 +111,7 @@ const TeacherListPage = () => {
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
+              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-themeYellow">
                 <Image src="/plus.png" alt="" width={14} height={14} />
               </button>
             )}
