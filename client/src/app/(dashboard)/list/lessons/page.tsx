@@ -1,36 +1,30 @@
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { classesData, role, subjectsData } from "@/lib/data";
+import { lessonsData, role } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-type Class = {
+type Lesson = {
   id: number;
-  name: string;
-  capacity: number;
-  grade: number;
-  supervisor: string;
+  subject: string;
+  class: number;
+  teacher: number;
 };
 
 const columns = [
   {
-    header: "Class Name",
+    header: "Subject Name",
     accessor: "name",
   },
   {
-    header: "Capacity",
-    accessor: "capacity",
-    className: "hidden md:table-cell",
+    header: "Class",
+    accessor: "class",
   },
   {
-    header: "Grade",
-    accessor: "grade",
+    header: "Teacher",
+    accessor: "teacher",
     className: "hidden md:table-cell",
-  },
-  {
-    header: "Supervisor",
-    accessor: "supervisor",
   },
   {
     header: "Actions",
@@ -38,16 +32,15 @@ const columns = [
   },
 ];
 
-const ClassListPage = () => {
-  const renderRow = (item: Class) => (
+const LessonsListPage = () => {
+  const renderRow = (item: Lesson) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 hover:bg-themePurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.name}</td>
-      <td className="hidden md:table-cell">{item.capacity}</td>
-      <td className="hidden md:table-cell">{item.grade}</td>
-      <td>{item.supervisor}</td>
+      <td className="flex items-center gap-4 p-4">{item.subject}</td>
+      <td>{item.class}</td>
+      <td className="hidden md:table-cell">{item.teacher}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
@@ -70,7 +63,7 @@ const ClassListPage = () => {
       {/* TOP */}
       <div className="flex flex-col md:flex-row items-center justify-between">
         <h1 className="md:block text-lg font-semibold mb-3 self-start">
-          All Classes
+          All Lessons
         </h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
@@ -91,7 +84,7 @@ const ClassListPage = () => {
       </div>
 
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={classesData} />
+      <Table columns={columns} renderRow={renderRow} data={lessonsData} />
 
       {/* PAGINATION */}
       <Pagination />
@@ -99,4 +92,4 @@ const ClassListPage = () => {
   );
 };
 
-export default ClassListPage;
+export default LessonsListPage;
