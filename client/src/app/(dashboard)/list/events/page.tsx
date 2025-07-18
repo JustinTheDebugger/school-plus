@@ -1,47 +1,40 @@
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { assignmentsData, examsData, resultsData, role } from "@/lib/data";
+import { eventsData, role } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-type Result = {
+type Event = {
   id: number;
-  subject: string;
+  title: string;
   class: string;
-  teacher: string;
-  student: string;
-  type: "exam" | "assignment";
   date: string;
-  score: number;
+  startTime: string;
+  endTime: string;
 };
 
 const columns = [
   {
-    header: "Subject",
-    accessor: "subject",
-  },
-  {
-    header: "Student",
-    accessor: "student",
-  },
-  {
-    header: "Score",
-    accessor: "score",
-  },
-  {
-    header: "Teacher",
-    accessor: "teacher",
-    className: "hidden md:table-cell",
+    header: "Title",
+    accessor: "title",
   },
   {
     header: "Class",
     accessor: "class",
-    className: "hidden md:table-cell",
   },
   {
     header: "Date",
     accessor: "date",
+  },
+  {
+    header: "Start Time",
+    accessor: "startTime",
+    className: "hidden md:table-cell",
+  },
+  {
+    header: "End Time",
+    accessor: "endTime",
     className: "hidden md:table-cell",
   },
   {
@@ -50,18 +43,17 @@ const columns = [
   },
 ];
 
-const ResultsListPage = () => {
-  const renderRow = (item: Result) => (
+const EventsListPage = () => {
+  const renderRow = (item: Event) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 hover:bg-themePurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.subject}</td>
-      <td>{item.student}</td>
-      <td>{item.score}</td>
-      <td className="hidden md:table-cell">{item.teacher}</td>
-      <td className="hidden md:table-cell">{item.class}</td>
-      <td className="hidden md:table-cell">{item.date}</td>
+      <td className="flex items-center gap-4 p-4">{item.title}</td>
+      <td>{item.class}</td>
+      <td>{item.date}</td>
+      <td className="hidden md:table-cell">{item.startTime}</td>
+      <td className="hidden md:table-cell">{item.endTime}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
@@ -84,7 +76,7 @@ const ResultsListPage = () => {
       {/* TOP */}
       <div className="flex flex-col md:flex-row items-center justify-between">
         <h1 className="md:block text-lg font-semibold mb-3 self-start">
-          All Results
+          All Events
         </h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
@@ -105,7 +97,7 @@ const ResultsListPage = () => {
       </div>
 
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={resultsData} />
+      <Table columns={columns} renderRow={renderRow} data={eventsData} />
 
       {/* PAGINATION */}
       <Pagination />
@@ -113,4 +105,4 @@ const ResultsListPage = () => {
   );
 };
 
-export default ResultsListPage;
+export default EventsListPage;
