@@ -1,6 +1,9 @@
+"use client";
+
 import { role } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   {
@@ -118,6 +121,8 @@ const menuItems = [
 ];
 
 const Menu = () => {
+  const pathname = usePathname();
+
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((main) => (
@@ -127,11 +132,15 @@ const Menu = () => {
           </span>
           {main.items.map((item) => {
             if (item.visible.includes(role)) {
+              const isActive = pathname === item.href;
+
               return (
                 <Link
                   href={item.href}
                   key={item.label}
-                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-themeSkyLight"
+                  className={`flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-themeSkyLight hover:font-bold ${
+                    isActive ? "bg-themeSkyLight text-gray-500 font-bold" : ""
+                  }`}
                 >
                   <Image src={item.icon} alt="" width={20} height={20} />
                   <span className="hidden lg:block">{item.label}</span>
