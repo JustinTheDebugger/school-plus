@@ -132,7 +132,12 @@ const Menu = () => {
           </span>
           {main.items.map((item) => {
             if (item.visible.includes(role)) {
-              const isActive = pathname === item.href;
+              // Exact match
+              // const isActive = pathname === item.href;
+
+              // Work for nested routes, prefix match for nested pages
+              const isActive =
+                pathname === item.href || pathname.startsWith(`${item.href}/`);
 
               return (
                 <Link
