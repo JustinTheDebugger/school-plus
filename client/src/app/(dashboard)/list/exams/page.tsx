@@ -1,15 +1,16 @@
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { lessonsData, role } from "@/lib/data";
+import { examsData, role } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-type Lesson = {
+type Exam = {
   id: number;
   subject: string;
   class: string;
   teacher: string;
+  date: string;
 };
 
 const columns = [
@@ -27,13 +28,17 @@ const columns = [
     className: "hidden md:table-cell",
   },
   {
+    header: "Date",
+    accessor: "date",
+  },
+  {
     header: "Actions",
     accessor: "action",
   },
 ];
 
-const LessonsListPage = () => {
-  const renderRow = (item: Lesson) => (
+const ExamsListPage = () => {
+  const renderRow = (item: Exam) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 hover:bg-themePurpleLight"
@@ -41,6 +46,7 @@ const LessonsListPage = () => {
       <td className="flex items-center gap-4 p-4">{item.subject}</td>
       <td>{item.class}</td>
       <td className="hidden md:table-cell">{item.teacher}</td>
+      <td>{item.date}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
@@ -63,7 +69,7 @@ const LessonsListPage = () => {
       {/* TOP */}
       <div className="flex flex-col md:flex-row items-center justify-between">
         <h1 className="md:block text-lg font-semibold mb-3 self-start">
-          All Lessons
+          All Exams
         </h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
@@ -84,7 +90,7 @@ const LessonsListPage = () => {
       </div>
 
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={lessonsData} />
+      <Table columns={columns} renderRow={renderRow} data={examsData} />
 
       {/* PAGINATION */}
       <Pagination />
@@ -92,4 +98,4 @@ const LessonsListPage = () => {
   );
 };
 
-export default LessonsListPage;
+export default ExamsListPage;
