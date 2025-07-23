@@ -1,12 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  Legend,
-  RadialBar,
-  RadialBarChart,
-  ResponsiveContainer,
-} from "recharts";
+import { RadialBar, RadialBarChart, ResponsiveContainer } from "recharts";
 
 const data = [
   {
@@ -25,13 +20,6 @@ const data = [
     fill: "#C3EBFA",
   },
 ];
-
-const style = {
-  top: "50%",
-  right: 0,
-  transform: "translate(0, -50%)",
-  lineHeight: "24px",
-};
 
 const CountChart = () => {
   return (
